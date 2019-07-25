@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import com.griddynamics.workshops.openshift.example.model.Employee;
 
 
-public interface EmployeeRepository extends CrudRepository<Employee, Long> {
+public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
 
 }

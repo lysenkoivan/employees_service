@@ -7,11 +7,11 @@ import com.griddynamics.workshops.openshift.example.model.Employee;
 public interface EmployeeService {
     public List<Employee> getAllEmployees();
 
-    public Employee getEmployee(Long id);
+    public Employee getEmployee(Integer id);
 
     public void addEmployee(Employee capitalProject);
 
-    public void updateEmployee(Long id, Employee capitalProject);
+    public void updateEmployee(Integer id, Employee capitalProject);
 
-    public void deleteEmployee(Long id);
+    public void deleteEmployee(Integer id);
 }

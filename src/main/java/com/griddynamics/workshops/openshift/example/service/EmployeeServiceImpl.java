@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.griddynamics.workshops.openshift.example.model.Employee;
 import com.griddynamics.workshops.openshift.example.repository.EmployeeRepository;
 
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
@@ -22,7 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee getEmployee(Long id) {
+    public Employee getEmployee(Integer id) {
         return employeeRepository.findById(id).orElse(null);
     }
 
@@ -32,12 +33,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void updateEmployee(Long id, Employee employee) {
+    public void updateEmployee(Integer id, Employee employee) {
         employeeRepository.save(employee);
     }
 
     @Override
-    public void deleteEmployee(Long id) {
+    public void deleteEmployee(Integer id) {
         employeeRepository.deleteById(id);
     }
 }
