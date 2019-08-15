@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
 
 import com.griddynamics.workshops.openshift.example.dto.EmployeeDTO;
 import com.griddynamics.workshops.openshift.example.model.Employee;
@@ -31,7 +32,10 @@ public class EmployeeController {
     }
 
     @RequestMapping("/employees")
-    public List<Employee> getAllEmployees() { return employeeService.getAllEmployees(); }
+    public List<Employee> getAllEmployees(Authentication auth) {
+
+        return employeeService.getAllEmployees();
+    }
 
     @RequestMapping("/employees/{id}")
     public Employee getEmployee(@PathVariable Integer id) {
