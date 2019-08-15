@@ -30,25 +30,28 @@ public class EmployeeController {
         return modelMapper.map(employeeDTO, Employee.class);
     }
 
-    @RequestMapping("/employees")
-    public List<Employee> getAllEmployees() { return employeeService.getAllEmployees(); }
+    @RequestMapping("/employee")
+    public List<Employee> getAllEmployees() {
 
-    @RequestMapping("/employees/{id}")
+        return employeeService.getAllEmployees();
+    }
+
+    @RequestMapping("/employee/{id}")
     public Employee getEmployee(@PathVariable Integer id) {
         return employeeService.getEmployee(id);
     }
 
-    @RequestMapping(method=RequestMethod.POST, value = "/employees")
+    @RequestMapping(method=RequestMethod.POST, value = "/employee")
     public void addEmployee(@RequestBody EmployeeDTO employeeDTO) {
         Employee employee = convertFromDto(employeeDTO);
         employeeService.addEmployee(employee);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/employees/{id}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/employee/{id}")
     public void updateEmployee(@RequestBody Employee employee, @PathVariable Integer id) {
         employeeService.updateEmployee(id, employee);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/employees/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/employee/{id}")
     public void deleteEmployee(@PathVariable Integer id) { employeeService.deleteEmployee(id); }
 }
