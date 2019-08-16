@@ -1,5 +1,6 @@
 package com.griddynamics.workshops.openshift.example.authorization;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,10 +16,10 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 @EnableResourceServer
-public class JWTReousrceServerConfig extends ResourceServerConfigurerAdapter {
+public class JWTResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-    @Value("${autorization.secret}")
-    private String signinKey;
+//    @Value("${autorization.secret}")
+//    private String signinKey;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -43,7 +44,8 @@ public class JWTReousrceServerConfig extends ResourceServerConfigurerAdapter {
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey(this.signinKey); // symmetric key
+//        converter.setSigningKey(this.signinKey); // symmetric key
+        converter.setSigningKey("secret");
         return converter;
     }
 
