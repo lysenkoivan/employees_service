@@ -8,7 +8,7 @@ COPY src src
 
 RUN chmod +x ./mvnw &&./mvnw install -DskipTests &&mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8-jre-alpine
 VOLUME /tmp
 WORKDIR /app
 COPY --from=build /workspace/app/target/employees.jar /app/employees.jar
