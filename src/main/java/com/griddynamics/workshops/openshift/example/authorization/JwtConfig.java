@@ -15,4 +15,7 @@ public class JwtConfig {
     @Value("${security.jwt.secret:secret}")
     private String secret;
 
+    @Value("${security.jwt.prefix:Bearer }")
+    private String prefix;
+
 }

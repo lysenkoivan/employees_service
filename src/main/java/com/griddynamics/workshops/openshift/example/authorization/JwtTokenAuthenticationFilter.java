@@ -46,8 +46,7 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
         // And If user tried to access without access token, then he won't be authenticated and an exception will be thrown.
 
         // 3. Get the token
-//        String token = header.replace(jwtConfig.getPrefix(), "");
-        String token = header;
+        String token = header.replace(jwtConfig.getPrefix(), "");
 
         try {	// exceptions might be thrown in creating the claims if for example the token is expired
 
