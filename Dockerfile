@@ -8,9 +8,8 @@ COPY src src
 
 RUN chmod +x ./mvnw &&./mvnw install -DskipTests &&mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8-jre-alpine
 VOLUME /tmp
-ARG DEPENDENCY=/workspace/app/target/dependency
-COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
-COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
-ENTRYPOINT ["java","-cp","app:app/lib/*","com.griddynamics.workshops.openshift.example.EmployeesApplication"]
+WORKDIR /app
+COPY --from=build /workspace/app/target/employees.jar /app/employees.jar
+ENTRYPOINT ["java","-jar", "employees.jar"]
