@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine as build
+FROM openjdk:8-jdk-alpine
 WORKDIR /workspace/app
 
 COPY .mvn .mvn
@@ -6,10 +6,8 @@ COPY mvnw .
 COPY pom.xml .
 COPY src src
 
-RUN chmod +x ./mvnw &&./mvnw install -DskipTests &&mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+RUN chmod +x ./mvnw &&./mvnw install -DskipTests
 
-FROM openjdk:8-jre-alpine
-VOLUME /tmp
 WORKDIR /app
-COPY --from=build /workspace/app/target/employees.jar /app/employees.jar
+RUN cp /workspace/app/target/employees.jar /app/employees.jar
 ENTRYPOINT ["java","-jar", "employees.jar"]
